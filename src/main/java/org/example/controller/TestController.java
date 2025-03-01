@@ -20,8 +20,12 @@ public class TestController {
     }
 
     @GetMapping("/test")
-    public String test(){
-        productRepository.deleteById(1992);
-        return "sucess";
+    public String test() {
+        if (productRepository.existsById(1992)) {
+            productRepository.deleteById(1992);
+            return "success";
+        } else {
+            return "Record not found";
+        }
     }
 }

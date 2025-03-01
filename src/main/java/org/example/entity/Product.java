@@ -12,16 +12,17 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Integer categoryId;
     private String name;
     private String subtitle;
     private String mainImage;
     private String subImages;
-    private String detial;
+    private String detail;
     private BigDecimal price;
     private Integer stock;
     private Integer status;
-    private Date creatTime;
+    private Date createTime;
     private Date updateTime;
     public Product() {
 
@@ -35,12 +36,12 @@ public class Product {
         this.id = id;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
     public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+        this.createTime = creatTime;
     }
 
     public Integer getCategoryId() {
@@ -83,12 +84,12 @@ public class Product {
         this.subImages = subImages;
     }
 
-    public String getDetial() {
-        return detial;
+    public String getDetail() {
+        return detail;
     }
 
     public void setDetial(String detial) {
-        this.detial = detial;
+        this.detail = detial;
     }
 
     public BigDecimal getPrice() {
@@ -132,11 +133,11 @@ public class Product {
                 ", subtitle='" + subtitle + '\'' +
                 ", mainImage='" + mainImage + '\'' +
                 ", subImages='" + subImages + '\'' +
-                ", detial='" + detial + '\'' +
+                ", detial='" + detail + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
                 ", status=" + status +
-                ", creatTime=" + creatTime +
+                ", creatTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';
     }
