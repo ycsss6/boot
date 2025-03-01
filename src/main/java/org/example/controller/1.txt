@@ -1,0 +1,81 @@
+package org.example.repository;
+
+import org.example.entity.Product;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+
+import java.math.BigDecimal;
+
+import java.util.Optional;
+
+@SpringBootTest
+public class ProductRepositoryTest {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    // 查询前十条数据
+
+    @Test
+    public void testSelectTop10() {
+        Page<Product> productPage=productRepository.findAll(PageRequest.of(0,10));
+
+    }
+
+    // 删除 id 为 10000 的商品数据
+
+    @Test
+    public void testDeleteProductById() {
+
+        Optional<Product> optionalProduct = productRepository.findById(10000);
+        if (optionalProduct.isPresent()) {
+            productRepository.deleteById(10000);
+            System.out.println("成功删除 id 为 10000 的商品数据");
+        } else {
+            System.out.println("id 为 10000 的商品数据不存在");
+        }
+    }
+
+    // 增加一条数据
+
+    @Test
+    public void testAddProduct() {
+        Product product = new Product();
+        product.setCategoryId(1);
+        product.setName("商品");
+        product.setSubtitle("商品");
+        product.setMainImage("test.jpg");
+        product.setSubImages("test1.jpg,test2.jpg");
+        product.setDetail("详细信息");
+        product.setPrice(BigDecimal.valueOf(100));
+        product.setStock(10);
+        product.setStatus(1);
+        Product savedProduct = productRepository.save(product);
+        System.out.println("新增商品的 id 为: " + savedProduct.getId());
+    }
+
+    //将上面增加的数据价格和库存修改为 10000 和 100
+
+    @Test
+    public void testUpdateProduct() {
+        Product product = new Product();
+        product.setCategoryId(1);
+        product.setName("商品");
+        product.setSubtitle("商品");
+        product.setMainImage("test.jpg");
+        product.setSubImages("test1.jpg,test2.jpg");
+        product.setDetail("详细信息");
+        product.setPrice(BigDecimal.valueOf(100));
+        product.setStock(10);
+        product.setStatus(1);
+        Product savedProduct = productRepository.save(product);
+
+        savedProduct.setPrice(BigDecimal.valueOf(10000));
+        savedProduct.setStock(100);
+
+        Product updatedProduct = productRepository.save(savedProduct);
+        System.out.println("更新后的商品信息: " + updatedProduct);
+    }
+}

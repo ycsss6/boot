@@ -88,8 +88,8 @@ public class Product {
         return detail;
     }
 
-    public void setDetial(String detial) {
-        this.detail = detial;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public BigDecimal getPrice() {
